@@ -86,6 +86,14 @@
             $isMonthlySalaryValid = preg_match('/^\d+,\d+\.\d+$/', $monthlySalary);
             $isSiteValid = preg_match('/^http:\/\/\w+\.\w+$/', $site);
             $isGpaValid = preg_match('/^([0-3]\.\d{1,2})|(4\.[0-4]\d)|(4.5)$/i', $gpa);
+
+            $isValid = $isNameValid && $isEmailValid && $isUsernameValid && $isPasswordValid && $isConfirmPasswordValid && $isAddressValid &&
+                $isCityValid && $isPostalCodeValid && $isHomePhoneValid && $isMobilePhoneValid && $isCreditCardNumberValid &&
+                $isCreditCardExpiryDateValid && $isMonthlySalaryValid && $isSiteValid && $isGpaValid;
+
+            if ($isValid) {
+                header('Location: thanks.php', TRUE);
+            }
         }
     ?>
 
