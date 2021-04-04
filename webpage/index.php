@@ -69,7 +69,7 @@
             $isNameValid = preg_match('/^[a-z]{2,}$/i', $name);
             $isEmailValid = preg_match('/^\w+@\w+\.\w+$/', $email);
             $isUsernameValid = preg_match('/^[a-z]{5,}$/', $username);
-            $isPasswordValid = preg_match('/^\w{8,}$/', $password);
+            $isPasswordValid = preg_match('/\A(?=\w{6,10}\z)(?=[^a-z]*[a-z])(?=(?:[^A-Z]*[A-Z]){3})(?=\D*\d)/', $password);
             if ($confirmPassword == $password) {
                 $isConfirmPasswordValid = true;
             }
@@ -137,7 +137,13 @@
                 <dd>
                     <input type="password" class="form-control <?= $isPasswordValid?'':'is-invalid' ?>" name="password" placeholder="at least 8 characters" value="<?= $password ?>"/>
                     <div class="invalid-feedback">
-                        Your password must be at least 8 characters or numbers
+                        Your password must:<br>
+                        <ul>
+                            <li>be 6-10 characters long</li>
+                            <li>include at least one lowercase character</li>
+                            <li>include at least three uppercase characters</li>
+                            <li>include at least one digit</li>
+                        </ul>
                     </div>
                 </dd>
 
